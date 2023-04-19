@@ -23,7 +23,6 @@ namespace Fat_Secret
         // list of punkts
         string date_day_for_check;
         string day;
-        //
         public Icon()
         {
             InitializeComponent();
