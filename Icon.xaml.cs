@@ -21,7 +21,9 @@ namespace Fat_Secret
     public partial class Icon : UserControl
     {
         // list of punkts
-        string date_day;
+        string date_day_for_check;
+        string day;
+        //
         public Icon()
         {
             InitializeComponent();
@@ -29,7 +31,9 @@ namespace Fat_Secret
 
         private void pic_but_Click(object sender, RoutedEventArgs e)
         {
-            (Application.Current.MainWindow as MainWindow).Pg_frame.Content = new Page2();
+            day = icon_text.Text;
+            date_day_for_check = day + "." + Page1.month + "." + Page1.year;
+            (Application.Current.MainWindow as MainWindow).Pg_frame.Content = new Page2(date_day_for_check);
         }
     }
 }

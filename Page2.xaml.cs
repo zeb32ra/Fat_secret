@@ -35,10 +35,11 @@ namespace Fat_Secret
         List<Uri> pictures = new List<Uri>() { steak, fish, soup, spaghetti, cake };
         List<string> titles = new List<string>() {title1, title2, title3, title4, title5};
         List<Punktti> punkts = new List<Punktti>();
-        public Page2()
+        public Page2(string date_day)
         {
             InitializeComponent();
             load();
+            date.Text = date_day;
             food_list.ItemsSource = punkts;
         }
 

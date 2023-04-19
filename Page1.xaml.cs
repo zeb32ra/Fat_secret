@@ -21,7 +21,8 @@ namespace Fat_Secret
     //
     public partial class Page1 : Page
     {
-        string curr_date;
+        public static string month;
+        public static string year;
         int days = 0;
         public Page1()
         {
@@ -44,6 +45,8 @@ namespace Fat_Secret
         {
             days = DateTime.DaysInMonth(Date_pick.SelectedDate.Value.Year, Date_pick.SelectedDate.Value.Month);
             m_y_text.Text = Date_pick.SelectedDate.Value.ToString("MMMM") + " " + Date_pick.SelectedDate.Value.Year.ToString();
+            month = Date_pick.SelectedDate.Value.ToString("MM");
+            year = Date_pick.SelectedDate.Value.Year.ToString();
             panel.Children.Clear();
             display_icons();
         }
