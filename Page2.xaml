@@ -23,6 +23,6 @@
         <TextBlock x:Name="date" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
         <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="Что вы ели сегодня?" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <ListBox x:Name="food_list" Grid.ColumnSpan="2" Grid.Row="2"/>
-        <Button Grid.ColumnSpan="2" Content="Сохранить и выйти" Grid.Row="3"/>
+        <Button x:Name="Save_back" Grid.ColumnSpan="2" Content="Сохранить и выйти" Grid.Row="3" Click="Save_back_Click"/>
     </Grid>
 </Page>

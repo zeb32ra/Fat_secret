@@ -39,7 +39,7 @@ namespace Fat_Secret
 
         private void eaten_Checked(object sender, RoutedEventArgs e)
         {
-            //
+            ischecked = true;
         }
     }
 }
