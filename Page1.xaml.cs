@@ -24,11 +24,15 @@ namespace Fat_Secret
         public static string month;
         public static string year;
         int days = 0;
+        List<Choise_for_day> choises = Generics.MyDeserialize<List<Choise_for_day>>("Choises.json");
         public Page1()
         {
             InitializeComponent();
-            Date_pick.SelectedDate = DateTime.Today.Date; ;
-            
+            Date_pick.SelectedDate = DateTime.Today.Date;
+            /*if(choises == null)
+            {
+                choises = new List<Choise_for_day>();
+            }*/
         }
 
         private void next_Click(object sender, RoutedEventArgs e)
@@ -57,6 +61,25 @@ namespace Fat_Secret
             {
                 Icon icon = new Icon();
                 icon.icon_text.Text = i.ToString();
+                if(choises != null)
+                {
+                    for (int h = 0; h < choises.Count; h++)
+                    {
+                        if (icon.icon_text.Text + "." + month + "." + year == choises[h].date)
+                        {
+                            foreach (PunkttiDTO choise in choises[h].punkts_for_day)
+                            {
+                                if (choise.isCheked == true)
+                                {
+                                    icon.pic_but.Background = new ImageBrush(new BitmapImage(choise.img_path));
+                                    break;
+                                }
+                            }
+
+                        }
+                    }
+                }
+                   
                 panel.Children.Add(icon);
             }
         }

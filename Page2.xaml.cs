@@ -53,6 +53,7 @@ namespace Fat_Secret
 
         private void load()
         {
+            bool found = false;
             if (today_choise == null)
             {
                 today_choise = new List<Choise_for_day>();
@@ -63,10 +64,20 @@ namespace Fat_Secret
                 {
                     if(i.date == date_today)
                     {
-                        foreach(Punktti j in i.punkts_for_day)
+                        found = true;
+                        foreach(PunkttiDTO j in i.punkts_for_day)
                         {
-                            punkts.Add(j);
+                            Punktti p = new Punktti(j.isCheked, j.img_path, j.title);
+                            punkts.Add(p);
                         }
+                    }
+                }
+                if (!found)
+                {
+                    for (int i = 0; i < pictures.Count; i++)
+                    {
+                        Punktti punkt = new Punktti(false, pictures[i], titles[i]);
+                        punkts.Add(punkt);
                     }
                 }
             }
@@ -77,28 +88,46 @@ namespace Fat_Secret
                     Punktti punkt = new Punktti(false, pictures[i], titles[i]);
                     punkts.Add(punkt);
                 }
-
-                List<Punktti> cop = new List<Punktti>();
-                foreach (Punktti p in punkts)
-                {
-                    cop.Add(p);
-                }
-                Choise_for_day ch = new Choise_for_day(date_today, cop);
-                today_choise.Add(ch);
             }  
         }
 
         private void Save_back_Click(object sender, RoutedEventArgs e)
         {
-            foreach (Choise_for_day choise in today_choise)
+            List<PunkttiDTO> flist_punkts = new List<PunkttiDTO> ();
+            foreach(Punktti punkt in food_list.Items)
             {
-                if (choise.date == date_today)
+                PunkttiDTO p = new PunkttiDTO(punkt.ischecked, punkt.img_path, punkt.title);
+                flist_punkts.Add(p);
+            }
+
+            if(today_choise.Count == 0)
+            {
+                Choise_for_day new_chd = new Choise_for_day(date_today, flist_punkts);
+                today_choise.Add(new_chd);
+            }
+            else
+            {
+                try
                 {
-                    choise.punkts_for_day.Clear();
-                    foreach (Punktti i in food_list.Items)
+                    bool found = false;
+                    foreach (Choise_for_day choise in today_choise)
                     {
-                        choise.punkts_for_day.Add(i);
+                        if (choise.date == date_today)
+                        {
+                            found = true;
+                            today_choise.Remove(choise);
+                            Choise_for_day ch = new Choise_for_day(date_today, flist_punkts);
+                            today_choise.Add(ch);
+                        }
                     }
+                    if (!found)
+                    {
+                        Choise_for_day new_chd = new Choise_for_day(date_today, flist_punkts);
+                        today_choise.Add(new_chd);
+                    }
+                } catch (Exception ex)
+                {
+                    MessageBox.Show("OK");
                 }
             }
             Generics.MySerialize(today_choise, "Choises.json");

@@ -10,10 +10,9 @@ namespace Fat_Secret
     internal class Choise_for_day
     {
         public string date;
-        [JsonIgnore]
-        public List<Punktti> punkts_for_day;
+        public List<PunkttiDTO> punkts_for_day;
 
-        public Choise_for_day(string d, List<Punktti> punkts)
+        public Choise_for_day(string d, List<PunkttiDTO> punkts)
         {
             date = d;
             punkts_for_day = punkts;

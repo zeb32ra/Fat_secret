@@ -19,11 +19,11 @@ namespace Fat_Secret
     /// <summary>
     /// Логика взаимодействия для Punktti.xaml
     /// </summary>
-    public partial class Punktti : UserControl
+    public partial class Punktti : UserControl 
     {
-        bool ischecked;
-        Uri img_path;
-        string title;
+        public bool ischecked;
+        public Uri img_path;
+        public string title;
 
         public Punktti(bool isch, Uri imp, string t)
         {
@@ -37,9 +37,16 @@ namespace Fat_Secret
         }
 
 
-        private void eaten_Checked(object sender, RoutedEventArgs e)
+        private void eaten_Click(object sender, RoutedEventArgs e)
         {
-            ischecked = true;
+            if (ischecked)
+            {
+                ischecked = false;
+            }
+            else
+            {
+                ischecked = true;
+            }
         }
     }
 }

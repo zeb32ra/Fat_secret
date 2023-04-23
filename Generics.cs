@@ -13,13 +13,9 @@ namespace Fat_Secret
 
         public static void MySerialize<T>(T choise_d, string Filename)
         {
-            /*var settings = new JsonSerializerSettings()
-            {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            };*/
             string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                string json = JsonConvert.SerializeObject(choise_d);
-                File.WriteAllText(desktop + "\\" + Filename, json);
+            string json = JsonConvert.SerializeObject(choise_d);
+            File.WriteAllText(desktop + "\\" + Filename, json);
         }
         public static T MyDeserialize<T>(string Filename)
         {
